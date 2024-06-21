@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="com.javarush.lesson01.config.ApplicationProperties" id="applicationProperties">
+        <constructor-arg name="fileProperties">
+            <value type="java.lang.String">application.properties</value>
+        </constructor-arg>
+    </bean>
+
+    <bean class="com.javarush.lesson01.config.SessionCreator" id="sessionCreator">
+        <constructor-arg name="applicationProperties" ref="applicationProperties"/>
+    </bean>
+
+    <bean id="userRepo" class="com.javarush.lesson01.repo.UserRepo">
+        <constructor-arg ref="sessionCreator"/>
+    </bean>
+
+    <bean id="userService" class="com.javarush.lesson01.service.UserService">
+        <constructor-arg ref="userRepo"/>
+    </bean>
+
+</beans>
