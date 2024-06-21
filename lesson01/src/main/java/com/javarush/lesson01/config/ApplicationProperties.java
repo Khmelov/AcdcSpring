@@ -2,6 +2,8 @@ package com.javarush.lesson01.config;
 
 import lombok.SneakyThrows;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.net.URI;
@@ -12,11 +14,12 @@ import java.util.Properties;
 
 import static org.hibernate.cfg.JdbcSettings.JAKARTA_JDBC_DRIVER;
 
+@Component
 @ToString
 public class ApplicationProperties extends Properties {
 
     @SneakyThrows
-    public ApplicationProperties(String fileProperties) {
+    public ApplicationProperties(@Value("application.properties") String fileProperties) {
         //String fileProperties = "application.properties";
         this.load(new FileReader(CLASSES_ROOT + "/" + fileProperties));
         try {
