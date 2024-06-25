@@ -27,20 +27,20 @@ public class PlayerController {
     private PlayerService playerService;
 
     @GetMapping()
-    public List<PlayerInfo> getAll(@RequestParam(required = false) String name,
-                                   @RequestParam(required = false) String title,
-                                   @RequestParam(required = false) Race race,
-                                   @RequestParam(required = false) Profession profession,
-                                   @RequestParam(required = false) Long after,
-                                   @RequestParam(required = false) Long before,
-                                   @RequestParam(required = false) Boolean banned,
-                                   @RequestParam(required = false) Integer minExperience,
-                                   @RequestParam(required = false) Integer maxExperience,
-                                   @RequestParam(required = false) Integer minLevel,
-                                   @RequestParam(required = false) Integer maxLevel,
-                                   @RequestParam(required = false) PlayerOrder order,
-                                   @RequestParam(required = false) Integer pageNumber,
-                                   @RequestParam(required = false) Integer pageSize) {
+    public List<PlayerInfo> getAll(@RequestParam(required = false, name = "name") String name,
+                                   @RequestParam(required = false, name = "title") String title,
+                                   @RequestParam(required = false, name = "race") Race race,
+                                   @RequestParam(required = false, name = "profession") Profession profession,
+                                   @RequestParam(required = false, name = "after") Long after,
+                                   @RequestParam(required = false, name = "before") Long before,
+                                   @RequestParam(required = false, name = "banned") Boolean banned,
+                                   @RequestParam(required = false, name = "minExperience") Integer minExperience,
+                                   @RequestParam(required = false, name = "maxExperience") Integer maxExperience,
+                                   @RequestParam(required = false, name = "minLevel") Integer minLevel,
+                                   @RequestParam(required = false, name = "maxLevel") Integer maxLevel,
+                                   @RequestParam(required = false, name = "order") PlayerOrder order,
+                                   @RequestParam(required = false, name = "pageNumber") Integer pageNumber,
+                                   @RequestParam(required = false, name = "pageSize") Integer pageSize) {
         order = isNull(order) ? PlayerOrder.ID : order;
         pageNumber = isNull(pageNumber) ? 0 : pageNumber;
         pageSize = isNull(pageSize) ? 3 : pageSize;
@@ -51,23 +51,23 @@ public class PlayerController {
     }
 
     @GetMapping("/count")
-    public Integer getAllCount(@RequestParam(required = false) String name,
-                               @RequestParam(required = false) String title,
-                               @RequestParam(required = false) Race race,
-                               @RequestParam(required = false) Profession profession,
-                               @RequestParam(required = false) Long after,
-                               @RequestParam(required = false) Long before,
-                               @RequestParam(required = false) Boolean banned,
-                               @RequestParam(required = false) Integer minExperience,
-                               @RequestParam(required = false) Integer maxExperience,
-                               @RequestParam(required = false) Integer minLevel,
-                               @RequestParam(required = false) Integer maxLevel) {
+    public Integer getAllCount(@RequestParam(required = false, name = "name") String name,
+                               @RequestParam(required = false, name = "title") String title,
+                               @RequestParam(required = false, name = "race") Race race,
+                               @RequestParam(required = false, name = "profession") Profession profession,
+                               @RequestParam(required = false, name = "after") Long after,
+                               @RequestParam(required = false, name = "before") Long before,
+                               @RequestParam(required = false, name = "banned") Boolean banned,
+                               @RequestParam(required = false, name = "minExperience") Integer minExperience,
+                               @RequestParam(required = false, name = "maxExperience") Integer maxExperience,
+                               @RequestParam(required = false, name = "minLevel") Integer minLevel,
+                               @RequestParam(required = false, name = "maxLevel") Integer maxLevel) {
 
         return playerService.getAllCount(name, title, race, profession, after, before, banned,
                 minExperience, maxExperience, minLevel, maxLevel);
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<PlayerInfo> createPlayer(@RequestBody PlayerInfo info) {
         if (StringUtils.isEmpty(info.name) || info.name.length() > 12) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         if (info.title.length() > 30) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
