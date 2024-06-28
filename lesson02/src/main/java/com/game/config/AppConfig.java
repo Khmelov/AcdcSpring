@@ -58,6 +58,8 @@ public class AppConfig {
         return new EmbeddedDatabaseBuilder()
                 .generateUniqueName(true)
                 .setType(H2)
+                //no effect, try change h2 mode
+                .setName("test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE")
                 .setScriptEncoding("UTF-8")
                 .ignoreFailedDrops(true)
                 .addScript("test.sql")
@@ -79,8 +81,7 @@ public class AppConfig {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-//        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         return properties;
     }
 }
