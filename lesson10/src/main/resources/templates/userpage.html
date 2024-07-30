@@ -54,12 +54,12 @@
     <h2 th:text="#{user_page.list_users}">List users</h2>
     <div th:each="user : ${users}">
         <div>
-            <a th:href="@{|/users/${user.id}/|}" th:text="#{user_page.edit_link(${user.id})}">Edit</a> <span
+            <a th:href="@{|/users/${user.id}|}" th:text="#{user_page.edit_link(${user.id})}">Edit</a> <span
                 th:text="${user.login}">User Role</span>
         </div>
     </div>
 
-    <p><br><a href="/users/" th:text="#{user_page.reset_link}">Reset</a></p>
+    <p><br><a href="/users" th:text="#{user_page.reset_link}">Reset</a></p>
 
     <div th:insert="~{fragments::footer}">
         Footer

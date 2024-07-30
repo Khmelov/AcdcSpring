@@ -21,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/")
+    @GetMapping()
     public ModelAndView showAllUsers(ModelAndView view) {
         view.addObject("users", userService.findAll());
         view.setViewName("userpage");
@@ -29,7 +29,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/{id}/")
+    @GetMapping("/{id}")
     public ModelAndView showOneUserAndUsers(ModelAndView view, @PathVariable("id") Long id) {
         Optional<User> optionalUser = userService.get(id);
         if (optionalUser.isPresent()) {
@@ -40,30 +40,30 @@ public class UserController {
         return view;
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public String processNewUserOrLogin(User user,
                                         HttpSession session,
                                         @RequestParam(required = false, name = "createUser") String createUser) {
         if (Objects.nonNull(createUser)) {
             user = userService.save(user);
-            return "redirect:/users/%d/".formatted(user.getId());
+            return "redirect:/users/%d".formatted(user.getId());
         } else {
             log.info(" user {} login ", user);
             session.setAttribute("currentUser", user);
-            return "redirect:/users/";
+            return "redirect:/users";
         }
     }
 
 
-    @PostMapping("/{id}/")
+    @PostMapping("/{id}")
     public String updateOrDeleteUser(User user,
                                      @RequestParam(required = false, name = "deleteUser") String deleteUser) {
         if (Objects.nonNull(deleteUser)) {
             userService.delete(user);
-            return "redirect:/users/";
+            return "redirect:/users";
         } else {
             userService.save(user);
-            return "redirect:/users/%d/".formatted(user.getId());
+            return "redirect:/users/%d".formatted(user.getId());
         }
     }
 }

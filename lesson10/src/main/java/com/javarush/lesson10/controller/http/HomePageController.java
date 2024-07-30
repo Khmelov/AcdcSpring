@@ -10,6 +10,6 @@ public class HomePageController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String getHomePage(){
-        return "redirect:/users/";
+        return "redirect:/users";
     }
 }
