@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "logging.repository",
+      "type": "com.javarush.lesson15.config.LoggingRepositoryProperties",
+      "sourceType": "com.javarush.lesson15.config.LoggingRepositoryProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "logging.repository.level",
+      "type": "java.lang.String",
+      "description": "set log level TRACE, DEBUG, INFO, WARN, ERROR default value - INFO",
+      "sourceType": "com.javarush.lesson15.config.LoggingRepositoryProperties"
+    },
+    {
+      "name": "logging.repository.state",
+      "type": "java.lang.String",
+      "description": "set for enable ON, for disable OFF default value - ON",
+      "sourceType": "com.javarush.lesson15.config.LoggingRepositoryProperties"
+    }
+  ],
+  "hints": []
+}
