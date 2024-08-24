@@ -1,0 +1,60 @@
+<!doctype html>
+<html th:lang="${#locale}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::head}">
+    <title>Title for replace</title>
+</head>
+<body>
+<div class="container">
+    <span th:insert="~{fragments::menu}"></span>
+    <form th:action="@{/login}" method="post">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>User page</legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="login">Login</label>
+                <div class="col-md-4">
+                    <input id="login" name="username" th:value="${user!=null?user.login:'Carl'}" value="user.login"
+                           type="text" placeholder="" class="form-control input-md" required="">
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Password</label>
+                <div class="col-md-4">
+                    <input id="password" name="password" th:value="${user!=null?user.password:'456'}"
+                           value="user.password"
+                           type="password" placeholder="" class="form-control input-md"
+                           required="">
+                </div>
+            </div>
+            <input type="hidden" th:value="${user!=null?user.id:''}">
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="operation">Operation</label>
+                <button id="operation" name="login" class="btn btn-primary"
+                        value="login">Login
+                </button>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <h2>List users</h2>
+    <div th:each="user : ${users}">
+        <div>
+            <a th:href="@{|/users/${user.id}|}">Edit</a>
+            <span th:text="${user.login}">User Role</span>
+        </div>
+    </div>
+
+    <p><br><a href="/users">Reset</a></p>
+
+    <div th:insert="~{fragments::footer}">
+        Footer
+    </div>
+</div>
+</body>
+</html>
