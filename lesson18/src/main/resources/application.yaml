@@ -3,10 +3,24 @@ spring:
     url: jdbc:postgresql://localhost:5432/game
     username: postgres
     password: postgres
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23lijRyL1bHqt9pUOo
+            client-secret: 1ed69d83d81a0dbf45ffb6874e7f1b7d62b480cf
+            redirect-uri: http://localhost:8080/login/oauth2/code/github
+          google:
+            client-id: 1067619653655-qanjojv4o15kv3jur6htug6l8ea89mvt.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+
+
 logging:
   level:
     root: INFO
     springfox: WARN
 
-
+# 1ed69d83d81a0dbf45ffb6874e7f1b7d62b480cf
 

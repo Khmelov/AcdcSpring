@@ -15,6 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,7 +45,11 @@ public class UserController {
     }
 
     @GetMapping()
-    public ModelAndView showAllUsers(ModelAndView view) {
+    public ModelAndView showAllUsers(
+            ModelAndView view,
+            Principal principal
+    ) {
+        view.addObject("username", principal.getName());
         view.addObject("users", userService.findAll());
         view.setViewName("userpage");
         view.addObject("roles", Role.values());
@@ -53,7 +58,12 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public ModelAndView showOneUserAndUsers(ModelAndView view, @PathVariable("id") Long id) {
+    public ModelAndView showOneUserAndUsers(
+            ModelAndView view,
+            @PathVariable("id") Long id,
+            Principal principal
+    ) {
+        view.addObject("username", principal.getName());
         Optional<UserTo> optionalUser = userService.get(id);
         if (optionalUser.isPresent()) {
             view.addObject("user", optionalUser.get());

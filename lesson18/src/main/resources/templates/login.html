@@ -41,16 +41,10 @@
         </fieldset>
     </form>
 
+    Login with:
+    <a href="/oauth2/authorization/github">GitHub</a>
+    <a href="/oauth2/authorization/google">Google</a>
 
-    <h2>List users</h2>
-    <div th:each="user : ${users}">
-        <div>
-            <a th:href="@{|/users/${user.id}|}">Edit</a>
-            <span th:text="${user.login}">User Role</span>
-        </div>
-    </div>
-
-    <p><br><a href="/users">Reset</a></p>
 
     <div th:insert="~{fragments::footer}">
         Footer

@@ -17,7 +17,7 @@
         <a href=".?lang=en">EN</a>
         <a href=".?lang=ru">RU</a>
     <span sec:authorize="isAuthenticated()">
-        &nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout">Logout</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout" th:text="|Logout: ${username}|">Logout</a>
     </span>
 </span>
 
